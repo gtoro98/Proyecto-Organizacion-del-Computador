@@ -1,8 +1,8 @@
 package proyectoorga;
 
-
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
+import javax.swing.JFormattedTextField;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,10 +16,12 @@ import javax.swing.JOptionPane;
 public class GUI extends javax.swing.JFrame {
 
    Estacionamiento estacionamiento = new Estacionamiento();
+   private JFormattedTextField formatter;
     
     
     public GUI() {
         initComponents();
+       
     }
 
     /**
@@ -30,13 +32,16 @@ public class GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        java.net.URL iconURL = getClass().getResource("flagp.png");
+        // iconURL is null when not found
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage()); 
+        this.setTitle("Estacionamiento Don Joao");   
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         agregar_vehiculo = new javax.swing.JButton();
         buscar_vehiculo = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         ScrollCarros = new javax.swing.JScrollPane();
         ListaCarros = new java.awt.List();
@@ -55,26 +60,28 @@ public class GUI extends javax.swing.JFrame {
         PlacaCarro = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
-
+        
+        
+            
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Bienvenido al Estacionamiento Don Joao");
 
-        agregar_vehiculo.setText("agregar vehiculo");
+        agregar_vehiculo.setText("Agregar vehículo");
         agregar_vehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregar_vehiculoActionPerformed(evt);
             }
         });
 
-        buscar_vehiculo.setText("buscar vehiculo");
+        buscar_vehiculo.setText("Buscar vehículo");
         buscar_vehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscar_vehiculoActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,15 +92,14 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(agregar_vehiculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buscar_vehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-                .addGap(37, 37, 37))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    
+                                        .addComponent(buscar_vehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 142,
+                                                Short.MAX_VALUE))
+                                .addGap(37, 37, 37)));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar_vehiculo)
@@ -107,7 +113,7 @@ public class GUI extends javax.swing.JFrame {
         });
         ScrollCarros.setViewportView(ListaCarros);
 
-        jButton1.setText("buscar seleccionado");
+        jButton1.setText("Buscar seleccionado");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -254,6 +260,7 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+        
     private void agregar_vehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_vehiculoActionPerformed
         // TODO add your handling code here:
         
@@ -272,7 +279,7 @@ public class GUI extends javax.swing.JFrame {
             marca = JOptionPane.showInputDialog(this, "Ingrese la marca del carro", "Agregar Carro", JOptionPane.QUESTION_MESSAGE);
         }
          
-        String modelo = JOptionPane.showInputDialog(this, "Ingrese la modelo del carro", "Agregar Carro", JOptionPane.QUESTION_MESSAGE);
+        String modelo = JOptionPane.showInputDialog(this, "Ingrese el modelo del carro", "Agregar Carro", JOptionPane.QUESTION_MESSAGE);
         
          while ("".equals(modelo) || modelo.length() > 20){
             JOptionPane.showMessageDialog(this, "El modelo no es valido", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -356,9 +363,28 @@ public class GUI extends javax.swing.JFrame {
 
     private void buscar_vehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_vehiculoActionPerformed
      String[] decision1 = {"Buscar por Placa", "Buscar por modelo"};
-        String decisionMenu1 = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de plan", "Generar Plan", JOptionPane.QUESTION_MESSAGE, null, decision1, decision1[0]);
         
-    }//GEN-LAST:event_buscar_vehiculoActionPerformed
+        String decisionMenu1 = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de búsqueda", "Busqueda de vehículos", JOptionPane.QUESTION_MESSAGE, null, decision1, decision1[0]);
+
+        if(decisionMenu1 == "Buscar por Placa"){
+        String placa = JOptionPane.showInputDialog(this, "Ingrese la placa del vehículo a buscar", "Buscar vehículo", JOptionPane.QUESTION_MESSAGE);
+         while ("".equals(placa) || placa.length() != 7){
+            JOptionPane.showMessageDialog(this, "La placa del vehículo no es valida", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            placa = JOptionPane.showInputDialog(this, "Ingrese la placa del vehículo a buscar", "Buscar vehículo", JOptionPane.QUESTION_MESSAGE);
+           
+        } int key = estacionamiento.Hash(placa);
+        Carros carro = estacionamiento.BuscarCarro(key, placa);
+        if(carro!=null){
+        ModeloCarro.setText(carro.getModelo());
+        MarcaCarro.setText(carro.getMarca());
+        ColorCarro.setText(carro.getColor());
+        MensualidadCarro.setText(Integer.toString(carro.getMensualidad()));
+        PlacaCarro.setText(carro.getPlaca());}
+        else{JOptionPane.showMessageDialog(this, "El vehículo no se encuentra en la base de datos", "Advertencia", JOptionPane.WARNING_MESSAGE);}}
+    
+        
+        else if(decisionMenu1 == "Buscar por modelo"){JOptionPane.showMessageDialog(null, "Busqueda por modelo");}}
+            //GEN-LAST:event_buscar_vehiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,7 +420,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ColorCarro;
     private java.awt.List ListaCarros;
@@ -406,7 +432,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton agregar_vehiculo;
     private javax.swing.JButton buscar_vehiculo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
